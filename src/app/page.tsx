@@ -1,103 +1,76 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <div className="relative min-h-screen w-full overflow-hidden bg-white">
+      {/* Overlay da chuva (GIF) */}
+      <img
+        src="/images/rain.gif"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-20 h-full w-full object-cover opacity-20 mix-blend-multiply"
+      />
+
+      {/* Header */}
+      <header className="relative z-10 flex items-center justify-between px-4 pt-5">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="/images/meetyo.svg"
+          width={84}
+          height={84}
+          alt="meetyo"
           priority
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+        <div
+          aria-hidden="true"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-[#FFA216] text-[#FFA216]"
+          title="Avisos"
+        />
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Conteúdo principal */}
+      <main className="relative z-10 px-4 pb-10">
+        <div className="mx-auto w-full max-w-6xl">
+          {/* Mobile: coluna | Desktop: linha com space-between */}
+          <div className="flex flex-col gap-8 pt-4 lg:flex-row lg:items-center lg:justify-between">
+            {/* Planeta (esquerda no desktop) */}
+            <div className="mx-auto lg:mx-0 lg:shrink-0">
+              <Image
+                src="/images/earth.png"
+                width={420}
+                height={420}
+                alt="Planeta Terra com ícones de clima"
+                priority
+              />
+            </div>
+
+            {/* Texto + CTA (direita no desktop) */}
+            <section className="lg:max-w-xl">
+              <h1 className="max-w-[18ch] text-3xl font-semibold leading-tight text-[#FFA216] md:text-4xl">
+                Qual a previsão de hoje?
+              </h1>
+
+              <div className="mt-4 flex items-center gap-4">
+                <Link
+                  href="/previsao"
+                  aria-label="Ir para a previsão de hoje"
+                  className="grid h-14 w-14 place-items-center rounded-full bg-[#FFA216] shadow-lg transition hover:brightness-110 md:h-16 md:w-16"
+                >
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M5 12h12M13 6l6 6-6 6"
+                      stroke="white"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </section>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
