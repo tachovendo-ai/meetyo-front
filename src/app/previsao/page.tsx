@@ -1,5 +1,8 @@
-import PrevisaoClient from './PrevisaoClient';
 
 export default function Page() {
-  return <PrevisaoClient />;
+  return (
+    <>
+    <h1>Previsão</h1>
+    </>
+  )
 }
