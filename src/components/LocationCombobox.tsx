@@ -168,9 +168,7 @@ export function LocationCombobox({
   );
 }
 
-// Helpers para encurtar/formatar labels
 function shortLabel(label: string) {
-  // Pega "rua/cidade, estado, país" → retorna até a primeira vírgula
   const i = label.indexOf(",");
   return i > 0 ? label.slice(0, i) : label;
 }

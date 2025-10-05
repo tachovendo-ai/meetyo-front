@@ -1,4 +1,3 @@
-// src/components/DateToolbar.tsx
 "use client";
 
 import * as React from "react";
@@ -63,33 +62,23 @@ export default function DateToolbar({
     setDate(startOfDay(new Date(year, month, dd)));
   };
 
-  const mobileLabel = date.toLocaleDateString(locale, { day: "2-digit", month: "short", year: "numeric" });
+  const label = date.toLocaleDateString(locale, { day: "2-digit", month: "short", year: "numeric" });
 
   return (
     <div className={cn("w-full min-w-0", className)}>
-      {/* ===== Mobile (compacto) ===== */}
-      <div className="flex items-center gap-2 rounded-md bg-card border border-border shadow-sm px-2 py-1 h-10 sm:hidden">
-        <Button
-          type="button"
-          size="icon"
-          variant="outline"
-          className="rounded-md text-black"
-          onClick={() => setDate(addDays(date, -1))}
-          aria-label="Dia anterior"
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
-
+      {/* ===== MOBILE (ícone único) ===== */}
+      <div className="flex items-center sm:hidden">
         <Popover>
           <PopoverTrigger asChild>
             <Button
               type="button"
+              size="icon"
               variant="outline"
-              className="flex-1 justify-between rounded-md text-black h-8"
-              aria-label="Selecionar data"
+              className="h-10 w-10 rounded-md text-black"
+              aria-label={`Selecionar data (atual: ${label})`}
+              title={label}
             >
-              <span className="truncate">{mobileLabel}</span>
-              <CalendarIcon className="h-4 w-4 opacity-70" />
+              <CalendarIcon className="h-4 w-4" />
             </Button>
           </PopoverTrigger>
           <PopoverContent
@@ -107,20 +96,9 @@ export default function DateToolbar({
             />
           </PopoverContent>
         </Popover>
-
-        <Button
-          type="button"
-          size="icon"
-          variant="outline"
-          className="rounded-md text-black"
-          onClick={() => setDate(addDays(date, 1))}
-          aria-label="Próximo dia"
-        >
-          <ChevronRight className="h-4 w-4" />
-        </Button>
       </div>
 
-      {/* ===== Desktop/Tablet (detalhado) ===== */}
+      {/* ===== DESKTOP/TABLET (toolbar completa) ===== */}
       <div className="hidden sm:inline-flex items-center gap-2 rounded-md bg-card border border-border shadow-sm px-2 py-1 h-10 min-w-0">
         <Button
           type="button"
@@ -154,12 +132,12 @@ export default function DateToolbar({
           </SelectTrigger>
           <SelectContent align="start" className="rounded-md z-[2300]">
             {monthOptions.map((mm) => {
-              const label = new Date(y, mm, 1)
+              const labelMonth = new Date(y, mm, 1)
                 .toLocaleString(locale, { month: "long" })
                 .replace(/^./, (c) => c.toUpperCase());
               return (
                 <SelectItem key={mm} value={String(mm)} className="cursor-pointer">
-                  {label}
+                  {labelMonth}
                 </SelectItem>
               );
             })}
@@ -193,11 +171,20 @@ export default function DateToolbar({
 
         <Popover>
           <PopoverTrigger asChild>
-            <Button type="button" size="icon" variant="outline" className="ml-1 rounded-md text-black" aria-label="Abrir calendário">
+            <Button
+              type="button"
+              size="icon"
+              variant="outline"
+              className="ml-1 rounded-md text-black"
+              aria-label="Abrir calendário"
+            >
               <CalendarIcon className="h-4 w-4" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-auto p-0 z-[2300] rounded-2xl" onOpenAutoFocus={(e) => e.preventDefault()}>
+          <PopoverContent
+            className="w-auto p-0 z-[2300] rounded-2xl"
+            onOpenAutoFocus={(e) => e.preventDefault()}
+          >
             <Calendar
               mode="single"
               selected={date}

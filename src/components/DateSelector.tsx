@@ -1,4 +1,3 @@
-// src/components/DataSelector.tsx
 "use client";
 
 import * as React from "react";
@@ -8,9 +7,7 @@ import { Label } from "@/components/ui/label";
 export type MetricKey = "temperature" | "rain" | "wind" | "humidity";
 
 type Props = {
-  /** selecionadas, ex.: ["temperature","rain"] */
   value: MetricKey[];
-  /** chamado ao alternar */
   onChange: (next: MetricKey[]) => void;
   className?: string;
 };

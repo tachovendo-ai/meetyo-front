@@ -1,14 +1,14 @@
 "use client";
-
 import dynamic from "next/dynamic";
-import type L from "leaflet";
+
+type Props = {
+  focus?: [number, number] | null;
+  picked?: [number, number] | null;
+  onPick?: (lat: number, lon: number) => void;
+};
 
 const ClientMap = dynamic(() => import("@/components/ClientMap"), { ssr: false });
 
-type Props = {
-  focus: L.LatLngExpression | null;
-};
-
-export default function MapSection({ focus }: Props) {
-  return <ClientMap focus={focus} />;
+export default function MapSection({ focus = null, picked = null, onPick }: Props) {
+  return <ClientMap focus={focus} picked={picked} onPick={onPick} />;
 }
