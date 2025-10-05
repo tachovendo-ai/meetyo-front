@@ -44,7 +44,7 @@ export default function CardDetails({
   const humidAvg = data?.umidade?.media;
   const windName = data?.vento?.nomenclatura_provavel;
   const conf = data?.meta?.confiabilidade;
-
+  const tempName = data?.temperatura?.nomenclatura_provavel;
   // Cards superiores (só cria os que têm dados)
   const summaryCards = useMemo(() => {
     const cards: {
@@ -55,13 +55,12 @@ export default function CardDetails({
       subtitle?: string;
     }[] = [];
 
-    if (data?.temperatura?.media) {
+    if (tempName) {
       cards.push({
         key: "temp",
         icon: <Sun className="h-5 w-5" />,
         title: "Temperatura",
-        value: data.temperatura.media,
-        subtitle: data.temperatura.nomenclatura_provavel ?? undefined,
+        value: tempName,
       });
     }
     if (rainProb) {
