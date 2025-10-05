@@ -198,7 +198,6 @@ export default function CardDetails({
         <CardHeader className="space-y-5 px-6 pt-6">
           <div className="flex items-center justify-between">
             <Image src="/icons/logo_meetyo.svg" width={100} height={28} alt="Logo" />
-            {conf ? <span className="text-xs text-white/70">Confiabilidade: {conf}</span> : null}
           </div>
 
           <div className="flex items-end justify-between gap-4">
@@ -317,7 +316,6 @@ export default function CardDetails({
                 Mais detalhes
               </Button>
               <Separator className="bg-white/10" />
-              <div className="text-center text-sm text-white/70">Me conta sobre seu evento</div>
             </>
           )}
         </CardFooter>
